@@ -1,0 +1,66 @@
+root@astella-virtual-machine:~# groups
+root
+root@astella-virtual-machine:~# groups louahabi
+louahabi : astella
+root@astella-virtual-machine:~# groupadd newgroup1
+root@astella-virtual-machine:~# nano /etc/group
+root@astella-virtual-machine:~# groupadd --gid 2222 newgroup2
+root@astella-virtual-machine:~# groupmod --new-name mygroup1 newgroup1
+root@astella-virtual-machine:~# 
+root@astella-virtual-machine:~# tail -10 /etc/group
+pulse-access:x:133:
+gdm:x:134:
+lxd:x:135:astella
+astella:x:1000:
+sambashare:x:136:astella
+stela:x:1001:
+louahabi:x:1111:
+dup5:x:1002:
+newgroup2:x:2222:
+mygroup1:x:1112:
+root@astella-virtual-machine:~# groupdel newgroup2
+root@astella-virtual-machine:~# gpasswd mygroup1
+mygroup1 그룹의 암호를 바꾸는 중
+새 암호: 
+새 암호를 다시 입력하십시오: 
+root@astella-virtual-machine:~# gpasswd -a stela mygroup1
+사용자 stela을(를) mygroup1 그룹에 등록 중
+root@astella-virtual-machine:~# gpasswd -a louahabi mygroup1
+사용자 louahabi을(를) mygroup1 그룹에 등록 중
+root@astella-virtual-machine:~# gpasswd -A stela mygroup1
+root@astella-virtual-machine:~# tail -10 /etc/group
+pulse:x:132:
+pulse-access:x:133:
+gdm:x:134:
+lxd:x:135:astella
+astella:x:1000:
+sambashare:x:136:astella
+stela:x:1001:
+louahabi:x:1111:
+dup5:x:1002:
+mygroup1:x:1112:stela,louahabi
+root@astella-virtual-machine:~# gpasswd -d louahabi mygroup1
+사용자 louahabi을(를) 그룹 mygroup1에서 제거하는 중
+root@astella-virtual-machine:~# tail -10 /etc/group
+pulse:x:132:
+pulse-access:x:133:
+gdm:x:134:
+lxd:x:135:astella
+astella:x:1000:
+sambashare:x:136:astella
+stela:x:1001:
+louahabi:x:1111:
+dup5:x:1002:
+mygroup1:x:1112:stela
+root@astella-virtual-machine:~# tail -10 /etc/passwd
+pulse:x:125:132:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:126:65534::/run/gnome-initial-setup/:/bin/false
+hplip:x:127:7:HPLIP system user,,,:/run/hplip:/bin/false
+gdm:x:128:134:Gnome Display Manager:/var/lib/gdm3:/bin/false
+astella:x:1000:1000:astella,,,:/home/astella:/bin/bash
+stela:x:1001:1001:astella,,,:/home/stela:/bin/bash
+
+louahabi:x:1111:1111:,,,:/home/louahabi:/bin/bash
+espher:x:1002:1000:,,,:/home/espher:/bin/bash
+dup3:x:1003:1002:,,,:/home/dup5:/bin/csh
+root@astella-virtual-machine:~# 

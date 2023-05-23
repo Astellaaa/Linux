@@ -1,0 +1,13 @@
+1. 무한 루프를 도는 프로세스 종료시키기
+<터미널1 입력>
+root@astella-virtual-machine:~# yes > /dev/null
+
+<터미널2 입력>
+root@astella-virtual-machine:~# ps -ef | grep yes
+root       11479    2152 99 11:36 pts/0    00:01:31 yes
+root       11494   11485  0 11:38 pts/1    00:00:00 grep --color=auto yes
+root@astella-virtual-machine:~# kill -9 11479
+
+<터미널1 출력>
+root@astella-virtual-machine:~# yes > /dev/null
+죽었음

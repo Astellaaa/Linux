@@ -1,0 +1,56 @@
+root@astella-virtual-machine:~# su - astella
+암호를 긴급히 변경해 주십시오 (암호 기한이 끝났습니다).
+astella에 대한 암호 변경 중
+현재 암호: 
+새 암호: 
+잘못된 비밀번호: 암호가 이전 암호와 동일함
+새 암호: 
+잘못된 비밀번호: 암호가 이전 암호와 동일함
+새 암호: 
+새 암호 재입력: 
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+astella@astella-virtual-machine:~$ pwd
+/home/astella
+astella@astella-virtual-machine:~$ ls -l /root/sample
+ls: '/root/sample'에 접근할 수 없음: 허가 거부
+astella@astella-virtual-machine:~$ ls -ld /root
+drwx------ 18 root root 4096  5월  9 10:21 /root
+astella@astella-virtual-machine:~$ logout
+root@astella-virtual-machine:~# mv sample ~astella
+root@astella-virtual-machine:~# ls -l sample
+ls: 'sample'에 접근할 수 없음: 그런 파일이나 디렉터리가 없습니다
+root@astella-virtual-machine:~# su - astella
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+astella@astella-virtual-machine:~$ ls -l sample
+-rwxr-xr-- 1 astella astella 0  5월  9 10:21 sample
+astella@astella-virtual-machine:~$ pwd
+/home/astella
+astella@astella-virtual-machine:~$ ls -ld /astella
+ls: '/astella'에 접근할 수 없음: 그런 파일이나 디렉터리가 없습니다
+astella@astella-virtual-machine:~$ ls -ld /home/astella
+drwxr-x--- 14 astella astella 4096  5월  9 10:41 /home/astella
+astella@astella-virtual-machine:~$ chmod 777 sample
+astella@astella-virtual-machine:~$ ls -l sample
+-rwxrwxrwx 1 astella astella 0  5월  9 10:21 sample
+astella@astella-virtual-machine:~$ chown root.root sample\
+> exit
+chown: 'sampleexit'에 접근할 수 없음: 그런 파일이나 디렉터리가 없습니다
+astella@astella-virtual-machine:~$ chown root.root sample
+chown: 'sample'의 소유권 바꾸는 중: 명령을 허용하지 않음
+astella@astella-virtual-machine:~$ logout
+root@astella-virtual-machine:~# mkdir linkdir
+root@astella-virtual-machine:~# cd linkdir
+root@astella-virtual-machine:~/linkdir# nano originalfile
+
+
+나노로 돌아가려면 "fg"를 사용하십시오.
+
+[1]+  멈춤                  nano originalfile
+root@astella-virtual-machine:~/linkdir# fg
+nano originalfile
+root@astella-virtual-machine:~/linkdir# cat originalfile
+링크시킬 원본 파일을 작성합니다.

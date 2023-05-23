@@ -1,0 +1,42 @@
+root@astella-virtual-machine:~# touch mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-rw-r--r-- 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# chmod 777 mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-rwxrwxrwx 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# chmod 644 mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-rw-r--r-- 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# chmod u+x mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-rwxr--r-- 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# chmod u-w mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-r-xr--r-- 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# chmod g+w mydata.txt
+root@astella-virtual-machine:~# ls -l mydata.txt
+-r-xrw-r-- 1 root root 0  5월  9 09:29 mydata.txt
+root@astella-virtual-machine:~# groups poly3
+poly3 : astella
+root@astella-virtual-machine:~# nano sample
+root@astella-virtual-machine:~# cat sample
+리눅스 명령 연습중
+파일 허가권과 소유권에 대한 명령 실습중
+ls /var
+root@astella-virtual-machine:~# ls -l sample
+-rw-r--r-- 1 root root 92  5월  9 10:21 sample
+root@astella-virtual-machine:~# chmod u+x sample
+root@astella-virtual-machine:~# ls -l sample
+-rwxr--r-- 1 root root 92  5월  9 10:21 sample
+root@astella-virtual-machine:~# ./sample
+root@astella-virtual-machine:~# ls -l sample
+-rwxr--r-- 1 root root 92  5월  9 10:21 sample
+root@astella-virtual-machine:~# chown astella sample
+root@astella-virtual-machine:~# ls -l sample
+-rwxr--r-- 1 astella root 92  5월  9 10:21 sample
+root@astella-virtual-machine:~# chown astella.astella sample
+root@astella-virtual-machine:~# ls -l sample
+-rwxr--r-- 1 astella astella 92  5월  9 10:21 sample
+root@astella-virtual-machine:~# chmod 754 sample
+root@astella-virtual-machine:~# ls -l sample
+-rwxr-xr-- 1 astella astella 0  5월  9 10:21 sample
