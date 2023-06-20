@@ -1,0 +1,122 @@
+root@astella-virtual-machine:~# apt-get -y install vsftpd
+패키지 목록을 읽는 중입니다... 완료
+의존성 트리를 만드는 중입니다... 완료
+상태 정보를 읽는 중입니다... 완료        
+다음의 추가 패키지가 설치될 것입니다 :
+  libssl1.1
+다음 새 패키지를 설치할 것입니다:
+  libssl1.1 vsftpd
+0개 업그레이드, 2개 새로 설치, 0개 제거 및 19개 업그레이드 안 함.
+1,418 k바이트 아카이브를 받아야 합니다.
+이 작업 후 4,364 k바이트의 디스크 공간을 더 사용하게 됩니다.
+받기:1 http://mirror.kakao.com/ubuntu bionic/main amd64 vsftpd amd64 3.0.3-9build1 [115 kB]
+받기:2 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.1-1ubuntu2.1~18.04.23 [1,303 kB]
+내려받기 1,418 k바이트, 소요시간 3초 (563 k바이트/초)
+패키지를 미리 설정하는 중입니다...
+Selecting previously unselected package libssl1.1:amd64.
+(데이터베이스 읽는중 ...현재 203057개의 파일과 디렉터리가 설치되어 있습니다.)
+Preparing to unpack .../libssl1.1_1.1.1-1ubuntu2.1~18.04.23_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.23) ...
+Selecting previously unselected package vsftpd.
+Preparing to unpack .../vsftpd_3.0.3-9build1_amd64.deb ...
+Unpacking vsftpd (3.0.3-9build1) ...
+libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.23) 설정하는 중입니다 ...
+vsftpd (3.0.3-9build1) 설정하는 중입니다 ...
+Created symlink /etc/systemd/system/multi-user.target.wants/vsftpd.service → /lib/systemd/system/vsftpd.service.
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+root@astella-virtual-machine:~# nano /etc/vsftpd.conf
+root@astella-virtual-machine:~# cd /srv/ftp# ls
+bash: cd: 인자가 너무 많음
+root@astella-virtual-machine:~# cd /srv/ftp
+root@astella-virtual-machine:/srv/ftp# ls
+root@astella-virtual-machine:/srv/ftp# fpt# mkdir pub
+fpt#: 명령을 찾을 수 없습니다
+root@astella-virtual-machine:/srv/ftp# ftp# mkdir pub
+명령어 'ftp#' 을(를) 찾을 수 없습니다. 다음 명령어로 시도하시겠습니까:
+  deb ftpdinetutils-ftpd의 명령어 ' (2:2.2-2)'
+  deb ftptnftp의 명령어 ' (20210827-4build1)'
+  deb ftpftp-ssl의 명령어 ' (0.17.34+really0.17-1)'
+  deb ftpgftp-text의 명령어 ' (2.9.1~beta-1)'
+  deb ftpinetutils-ftp의 명령어 ' (2:2.2-2)'
+Try: apt install <deb name>
+root@astella-virtual-machine:/srv/ftp# mkdir pub
+root@astella-virtual-machine:/srv/ftp# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:24 pub
+root@astella-virtual-machine:/srv/ftp# chmod 777 pub
+root@astella-virtual-machine:/srv/ftp# cd pub
+root@astella-virtual-machine:/srv/ftp/pub# mkdir file1
+root@astella-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:25 file1
+root@astella-virtual-machine:/srv/ftp/pub# chmod 777 file1
+root@astella-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxrwxrwx 2 root root 4096  6월 20 09:25 file1
+root@astella-virtual-machine:/srv/ftp/pub# cp /boot/vm* file1
+root@astella-virtual-machine:/srv/ftp/pub# cd file1
+root@astella-virtual-machine:/srv/ftp/pub/file1# ls
+vmlinuz  vmlinuz-5.19.0-32-generic  vmlinuz-5.19.0-35-generic  vmlinuz.old
+root@astella-virtual-machine:/srv/ftp/pub/file1# systemctl restart vsftpd
+root@astella-virtual-machine:/srv/ftp/pub/file1# systemctl enable vsftpd
+Synchronizing state of vsftpd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable vsftpd
+root@astella-virtual-machine:/srv/ftp/pub/file1# systemctl status vsftpd
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/lib/systemd/system/vsftpd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-06-20 09:28:15 KST; 29s ago
+   Main PID: 4311 (vsftpd)
+      Tasks: 1 (limit: 4573)
+     Memory: 1.4M
+        CPU: 11ms
+     CGroup: /system.slice/vsftpd.service
+             └─4311 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+ 6월 20 09:28:15 astella-virtual-machine systemd[1]: Starting vsftpd FTP server...
+ 6월 20 09:28:15 astella-virtual-machine systemd[1]: Started vsftpd FTP server.
+root@astella-virtual-machine:~# ufw allow ftp
+규칙이 추가되었습니다
+규칙이 추가되었습니다 (v6)
+root@astella-virtual-machine:~# systemctl stop ufw
+root@astella-virtual-machine:~# systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor prese>
+    Drop-In: /usr/lib/systemd/system/apache2.service.d
+             └─apache2-systemd.conf
+     Active: active (running) since Tue 2023-06-20 10:11:03 KST; 6s ago
+   Main PID: 6102 (apache2)
+      Tasks: 55 (limit: 4573)
+     Memory: 5.8M
+        CPU: 61ms
+     CGroup: /system.slice/apache2.service
+             ├─6102 /usr/sbin/apache2 -k start
+             ├─6103 /usr/sbin/apache2 -k start
+             └─6104 /usr/sbin/apache2 -k start
+
+ 6월 20 10:11:03 astella-virtual-machine systemd[1]: Starting The Apache HTTP S>
+ 6월 20 10:11:03 astella-virtual-machine apachectl[6101]: AH00558: apache2: Cou>
+ 6월 20 10:11:03 astella-virtual-machine systemd[1]: Started The Apache HTTP Se>
+root@astella-virtual-machine:~# systemctl status mysql
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset:>
+     Active: active (running) since Tue 2023-06-20 10:13:13 KST; 9s ago
+    Process: 6787 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=e>
+    Process: 6796 ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/run/mysqld>
+   Main PID: 6798 (mysqld)
+      Tasks: 27 (limit: 4573)
+     Memory: 173.0M
+        CPU: 381ms
+     CGroup: /system.slice/mysql.service
+             └─6798 /usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.>
+
+ 6월 20 10:13:12 astella-virtual-machine systemd[1]: Starting MySQL Community S>
+ 6월 20 10:13:13 astella-virtual-machine systemd[1]: Started MySQL Community Se>
+root@astella-virtual-machine:~# cd /var/www/html
+root@astella-virtual-machine:/var/www/html# nano phpinfo.php
+root@astella-virtual-machine:/var/www/html# ls
+index.html  phpinfo.php
+root@astella-virtual-machine:/var/www/html# cat phpinfo.php 
+<?php phpinfo(); ?>
+root@astella-virtual-machine:/var/www/html# apt-get install php
+root@astella-virtual-machine:/var/www/html# systemctl restart apache2
