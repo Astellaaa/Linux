@@ -1,0 +1,71 @@
+root@astella-virtual-machine:~# cd /etc/apt
+root@astella-virtual-machine:/etc/apt# nano sources.list
+root@astella-virtual-machine:/etc/apt# apt-get update
+기존:1 http://mirror.kakao.com/ubuntu bionic InRelease                                         
+기존:2 https://dl.google.com/linux/chrome/deb stable InRelease                                 
+받기:3 http://kr.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]                  
+받기:4 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [3,008 kB]
+받기:5 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main i386 Packages [1,650 kB]
+받기:6 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main Translation-en [548 kB]
+받기:7 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 DEP-11 Metadata [296 kB]
+받기:8 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main DEP-11 48x48 Icons [83.0 kB]
+받기:9 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main DEP-11 64x64 Icons [154 kB]
+받기:10 http://kr.archive.ubuntu.com/ubuntu bionic-updates/main DEP-11 64x64@2 Icons [29 B]
+받기:11 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe i386 Packages [1,661 kB]
+받기:12 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1,905 kB]
+받기:13 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe Translation-en [419 kB]
+받기:14 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 DEP-11 Metadata [303 kB]
+받기:15 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe DEP-11 48x48 Icons [237 kB]
+받기:16 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe DEP-11 64x64 Icons [521 kB]
+받기:17 http://kr.archive.ubuntu.com/ubuntu bionic-updates/universe DEP-11 64x64@2 Icons [29 B]
+받기:18 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [25.6 kB] 
+받기:19 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse i386 Packages [11.2 kB]  
+받기:20 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse Translation-en [6,088 B] 
+받기:21 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 DEP-11 Metadata [2,468 B]
+받기:22 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse DEP-11 48x48 Icons [29 B]
+받기:23 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse DEP-11 64x64 Icons [2,638 B]
+받기:24 http://kr.archive.ubuntu.com/ubuntu bionic-updates/multiverse DEP-11 64x64@2 Icons [29 B]
+받기:25 http://kr.archive.ubuntu.com/ubuntu bionic-updates/restricted i386 Packages [39.7 kB]  
+받기:26 http://kr.archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [1,300 kB]
+받기:27 http://kr.archive.ubuntu.com/ubuntu bionic-updates/restricted Translation-en [180 kB]  
+내려받기 12.4 M바이트, 소요시간 10초 (1,258 k바이트/초)                                        
+패키지 목록을 읽는 중입니다... 완료
+W: http://ftp.daumkakao.com/ubuntu/dists/bionic/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: http://kr.archive.ubuntu.com/ubuntu/dists/bionic-updates/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+root@astella-virtual-machine:/etc/apt# apt-get -y install openssh-server
+패키지 목록을 읽는 중입니다... 완료
+의존성 트리를 만드는 중입니다... 완료
+상태 정보를 읽는 중입니다... 완료        
+몇몇 패키지를 설치할 수 없습니다. 요청한 상황이 불가능할 수도 있고,
+불안정 배포판을 사용해서 일부 필요한 패키지를 아직 만들지 않았거나,
+아직 Incoming에서 나오지 않은 경우일 수도 있습니다.
+이 상황을 해결하는데 다음 정보가 도움이 될 수도 있습니다:
+
+다음 패키지의 의존성이 맞지 않습니다:
+ apt : 의존: gpgv 혹은
+               gpgv2 하지만 %s 패키지를 설치하지 않을 것입니다 혹은
+               gpgv1
+       의존: libapt-pkg6.0 (>= 2.4.8) 하지만 %s 패키지를 설치하지 않을 것입니다
+ dpkg : 미리의존: zlib1g (>= 1:1.1.4) 하지만 설치할 수 없습니다
+ libbsd0:i386 : 의존: libc6:i386 (>= 2.25) 하지만 설치할 수 없습니다
+ libc6 : 망가뜨림: openssh-server (< 1:8.2p1-4)
+         망가뜨림: openssh-server:i386 (< 1:8.2p1-4)
+         추천: libnss-nis 하지만 설치할 수 없습니다
+         추천: libnss-nisplus 하지만 설치할 수 없습니다
+ libedit2:i386 : 의존: libc6:i386 (>= 2.17) 하지만 설치할 수 없습니다
+ libssl1.0.0:i386 : 의존: libc6:i386 (>= 2.7) 하지만 설치할 수 없습니다
+ libtinfo5:i386 : 의존: libc6:i386 (>= 2.16) 하지만 설치할 수 없습니다
+ openssh-client:i386 : 의존: libc6:i386 (>= 2.26) 하지만 설치할 수 없습니다
+                       의존: libgssapi-krb5-2:i386 (>= 1.14+dfsg) 하지만 설치할 수 없습니다
+                       의존: libselinux1:i386 (>= 1.32) 하지만 설치할 수 없습니다
+                       추천: xauth:i386
+ openssh-server : 의존: zlib1g (>= 1:1.1.4) 하지만 설치할 수 없습니다
+                  추천: xauth
+                  추천: ssh-import-id 하지만 %s 패키지를 설치하지 않을 것입니다
+ shim-signed : 의존: grub-efi-amd64-signed (>= 1.187.2~) 하지만 %s 패키지를 설치하지 않을 것입니다 혹은
+                       grub-efi-arm64-signed (>= 1.187.2~) 하지만 설치할 수 없습니다
+               의존: grub2-common (>= 2.04-1ubuntu24)
+ util-linux : 미리의존: zlib1g (>= 1:1.1.4) 하지만 설치할 수 없습니다
+ zlib1g:i386 : 의존: libc6:i386 (>= 2.4) 하지만 설치할 수 없습니다
+E: 오류, pkgProblemResolver::Resolve가 망가졌습니다. 고정 패키지때문에 발생할 수도 있습니다.
+root@astella-virtual-machine:/etc/apt# 
